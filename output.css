@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-blue-950: oklch(28.2% 0.091 267.935);
+    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --default-font-family: var(--font-sans);
@@ -166,14 +167,8 @@
   .flex {
     display: flex;
   }
-  .table {
-    display: table;
-  }
   .h-4 {
     height: calc(var(--spacing) * 4);
-  }
-  .h-full {
-    height: 100%;
   }
   .h-screen {
     height: 100vh;
@@ -181,17 +176,17 @@
   .w-4 {
     width: calc(var(--spacing) * 4);
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
-  }
   .flex-wrap {
     flex-wrap: wrap;
   }
+  .items-center {
+    align-items: center;
+  }
   .justify-between {
     justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -199,15 +194,14 @@
   .gap-\[32px\] {
     gap: 32px;
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
+  .bg-\[\#edeef5e4\] {
+    background-color: #edeef5e4;
   }
-  .bg-blue-950 {
-    background-color: var(--color-blue-950);
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
   }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
+  .p-\[30px\] {
+    padding: 30px;
   }
   .text-center {
     text-align: center;
@@ -215,22 +209,15 @@
   .text-\[16px\] {
     font-size: 16px;
   }
-  .text-\[16\] {
-    color: 16;
+  .text-black {
+    color: var(--color-black);
   }
   .text-white {
     color: var(--color-white);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .md\:h-5 {
     @media (width >= 48rem) {
@@ -242,16 +229,26 @@
       width: calc(var(--spacing) * 5);
     }
   }
+  .dark\:bg-blue-950 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-blue-950);
+    }
+  }
   .dark\:fill-white {
-    @media (prefers-color-scheme: dark) {
+    &:where(.dark, .dark *) {
       fill: var(--color-white);
     }
   }
+  .dark\:text-white {
+    &:where(.dark, .dark *) {
+      color: var(--color-white);
+    }
+  }
 }
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
+img {
+  width: 250px;
+  height: 150px;
+  border-radius: 4px;
 }
 @property --tw-shadow {
   syntax: "*";
@@ -318,15 +315,9 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
@@ -341,7 +332,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
     }
   }
 }
